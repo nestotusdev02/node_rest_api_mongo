@@ -4,6 +4,7 @@ const router 			= express.Router();
 const UserController 	= require('../controllers/user.controller');
 const CompanyController = require('../controllers/company.controller');
 const HomeController 	= require('../controllers/home.controller');
+const IbeaconController 	= require('../controllers/ibeacon.controller');
 
 const custom 	        = require('./../middleware/custom');
 
@@ -31,6 +32,8 @@ router.put(     '/companies/:company_id', passport.authenticate('jwt', {session:
 router.delete(  '/companies/:company_id', passport.authenticate('jwt', {session:false}), custom.company, CompanyController.remove);  // D
 
 router.get('/dash', passport.authenticate('jwt', {session:false}),HomeController.Dashboard)
+
+router.post(    '/ibeacons',              passport.authenticate('jwt', {session:false}), IbeaconController.create);                  // C
 
 
 //********* API DOCUMENTATION **********
